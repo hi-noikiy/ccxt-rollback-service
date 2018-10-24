@@ -4,9 +4,10 @@ import { Exchange } from 'ccxt';
 import { ITicker } from '../../types/ticker';
 import * as config from 'config';
 import { IRollbackResponse } from '../../types/types';
+import { exchangeExists } from '../../util/exchangeExists';
 
 export async function tickerLookupHighestBid(payload: ITrade): Promise<null | IRollbackResponse> {
-  if (!ccxt.exchanges.includes(payload.exchange)) {
+  if (!exchangeExists(payload.exchange)) {
     console.log('exchange does not exists!');
     return null;
     // @TODO throw custom error
@@ -21,8 +22,8 @@ export async function tickerLookupHighestBid(payload: ITrade): Promise<null | IR
     return null;
   }
 
-  if (!tickerData.bidVolume || (tickerData.bidVolume < payload.volume)) {
-    console.log(`found ticker bid with volume ${tickerData.bidVolume} is lower then trade volume ${payload.volume} or its undefined`);
+  if (!tickerData.bidVolume || (tickerData.bidVolume !== payload.volume)) {
+    console.log(`found ticker bid ${tickerData.bid} with volume ${tickerData.bidVolume} is lower then trade volume ${payload.volume} or its undefined`);
     return null;
   }
 
@@ -37,7 +38,7 @@ export async function tickerLookupHighestBid(payload: ITrade): Promise<null | IR
     }
   };
 
-  console.log(`found rollback ${JSON.stringify(rollback)}`);
+  console.log(`found rollback in ticker ${JSON.stringify(rollback)}`);
 
   return rollback;
 }

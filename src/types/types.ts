@@ -1,7 +1,9 @@
 import { ITrade } from './trade';
 
+export type RollbackResponse = IRollbackResponse | {};
+
 export interface IRollbackResponse {
-  rollback: any;
+  rollback: IRollback;
 }
 
 interface IRollback extends ITrade {

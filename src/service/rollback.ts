@@ -1,9 +1,10 @@
 import { ITrade } from '../types/trade';
 import { tickerLookupHighestBid } from '../modules/ticker/lookupHighestBid';
-import { IRollbackResponse } from '../types/types';
+import { IRollbackResponse, RollbackResponse } from '../types/types';
+import { orderBookLookupHighestBid } from '../modules/orderBook/lookupHighestBid';
 
-export async function handleRollback(payload: ITrade): Promise<IRollbackResponse> {
-  const rollback: IRollbackResponse | null = await tickerLookupHighestBid(payload);
+export async function handleRollback(payload: ITrade): Promise<RollbackResponse> {
+  let rollback: IRollbackResponse | null = await tickerLookupHighestBid(payload);
 
   if (rollback) {
     return rollback;
@@ -11,16 +12,7 @@ export async function handleRollback(payload: ITrade): Promise<IRollbackResponse
 
   console.log('No rollback possible in ticker. Will lookup in orderBook.');
 
-  
+  rollback = await orderBookLookupHighestBid(payload);
 
-  return {
-    rollback: {
-      pair: 'BTC/EUR',
-      exchange: 'kraken',
-      volume: 1.0,
-      price: 5400,
-      direction: 'sell !!!!',
-      loss: 0.03571428571
-    }
-  }
+  return rollback === null ? {} : rollback;
 }
