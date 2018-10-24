@@ -4,7 +4,7 @@
   "description": "a demo of checking rollback possibilities by a given trade",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/valkuere/ccxt-rollback-service"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
