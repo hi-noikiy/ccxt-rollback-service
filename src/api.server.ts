@@ -11,9 +11,9 @@ export class ApiServer {
     this.init()
       .then(() => {
         this.app.listen(this.port);
-        console.log(`api initialized successfully on port ${this.port}`)
+        console.log(`api initialized successfully on port ${this.port}`);
       })
-      .catch((err) => console.log(`start api failed ${err}`));
+      .catch(err => console.log(`start api failed ${err}`));
   }
 
   private async init(): Promise<void> {

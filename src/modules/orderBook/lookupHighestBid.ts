@@ -1,5 +1,5 @@
 import { ITrade } from '../../types/trade';
-import * as ccxt from "ccxt";
+import * as ccxt from 'ccxt';
 import { exchangeExists } from '../../util/exchangeExists';
 import { Exchange, OrderBook } from 'ccxt';
 import * as config from 'config';
@@ -36,8 +36,8 @@ export async function orderBookLookupHighestBid(payload: ITrade): Promise<null |
       volume: bid[1],
       price: bid[0],
       direction: 'sell',
-      loss: loss
-    }
+      loss,
+    },
   };
 
   console.log(`found rollback in order book ${JSON.stringify(rollback)}`);

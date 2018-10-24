@@ -1,5 +1,5 @@
 import { ITrade } from '../../types/trade';
-import *  as ccxt from 'ccxt'
+import * as ccxt from 'ccxt';
 import { Exchange } from 'ccxt';
 import { ITicker } from '../../types/ticker';
 import * as config from 'config';
@@ -22,8 +22,12 @@ export async function tickerLookupHighestBid(payload: ITrade): Promise<null | IR
     return null;
   }
 
-  if (!tickerData.bidVolume || (tickerData.bidVolume !== payload.volume)) {
-    console.log(`found ticker bid ${tickerData.bid} with volume ${tickerData.bidVolume} is lower then trade volume ${payload.volume} or its undefined`);
+  if (!tickerData.bidVolume || tickerData.bidVolume !== payload.volume) {
+    console.log(
+      `found ticker bid ${tickerData.bid} with volume ${tickerData.bidVolume} is lower then trade volume ${
+        payload.volume
+      } or its undefined`,
+    );
     return null;
   }
 
@@ -34,8 +38,8 @@ export async function tickerLookupHighestBid(payload: ITrade): Promise<null | IR
       volume: tickerData.bidVolume,
       price: tickerData.bid,
       direction: 'sell',
-      loss: loss
-    }
+      loss,
+    },
   };
 
   console.log(`found rollback in ticker ${JSON.stringify(rollback)}`);
