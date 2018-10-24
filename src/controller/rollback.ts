@@ -2,7 +2,7 @@ import * as express from 'express';
 import { Request, Response } from 'express';
 import { ITrade } from '../types/trade';
 import { handleRollback } from '../service/rollback';
-import { RollbackResponse } from '../types/types';
+import { RollbackResponse } from '../types/rollback';
 
 export function registerResolveRollbackRoutes(app: express.Application): void {
   app.route('/v1/rollback/buy').get(async (req: Request, res: Response) => {

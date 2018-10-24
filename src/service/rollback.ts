@@ -1,7 +1,7 @@
 import { ITrade } from '../types/trade';
 import { tickerLookupHighestBid } from '../modules/ticker/lookupHighestBid';
-import { IRollbackResponse, RollbackResponse } from '../types/types';
 import { orderBookLookupHighestBid } from '../modules/orderBook/lookupHighestBid';
+import { IRollbackResponse, RollbackResponse } from '../types/rollback';
 
 export async function handleRollback(payload: ITrade): Promise<RollbackResponse> {
   let rollback: IRollbackResponse | null = await tickerLookupHighestBid(payload);

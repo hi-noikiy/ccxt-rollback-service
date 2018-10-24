@@ -3,8 +3,8 @@ import *  as ccxt from 'ccxt'
 import { Exchange } from 'ccxt';
 import { ITicker } from '../../types/ticker';
 import * as config from 'config';
-import { IRollbackResponse } from '../../types/types';
 import { exchangeExists } from '../../util/exchangeExists';
+import { IRollbackResponse } from '../../types/rollback';
 
 export async function tickerLookupHighestBid(payload: ITrade): Promise<null | IRollbackResponse> {
   if (!exchangeExists(payload.exchange)) {

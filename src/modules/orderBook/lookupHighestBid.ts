@@ -1,9 +1,9 @@
 import { ITrade } from '../../types/trade';
-import { IRollbackResponse } from '../../types/types';
 import * as ccxt from "ccxt";
 import { exchangeExists } from '../../util/exchangeExists';
 import { Exchange, OrderBook } from 'ccxt';
 import * as config from 'config';
+import { IRollbackResponse } from '../../types/rollback';
 
 export async function orderBookLookupHighestBid(payload: ITrade): Promise<null | IRollbackResponse> {
   if (!exchangeExists(payload.exchange)) {
