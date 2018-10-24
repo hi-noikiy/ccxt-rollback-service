@@ -7,6 +7,7 @@ Spike Demo for lookup at [CCXT](https://github.com/ccxt/) ticker and order books
 
 * Node.js LTS 8.12.0 (best via [NVM](https://github.com/creationix/nvm))
 * NPM 6.4.1
+* Typescript 3.1.3
 
 ## Installing
 
